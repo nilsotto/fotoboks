@@ -3,10 +3,10 @@
 #set -e
 export MODE="KLAR"
 export TMP_FOLDER=/home/pi/fotoboks/bilder
-export GODKJ_FOLDER=/home/pi/fotoboks/bilder/godkjent
+export GODKJ_FOLDER=/home/pi/fotoboks/bilder/godkjent/
 
-export APP_BASEPATH="localhost:8008/static"
-gpio omode 1 up
+export APP_BASEPATH="localhost:8080/static"
+gpio mode 1 up
 gpio mode 4 up
 gpio mode 5 up
 cd $TMP_FOLDER
@@ -17,13 +17,13 @@ do
 	if [ "$MODE" == "KLAR" ]; then
  		BLAA=$(gpio read 1)
 		if [ $BLAA -eq 0 ]; then
-			firefox $APP_BASEPATH/vent.html
+			firefox $APP_BASEPATH/knips.html
 			sleep 3
 			export MODE="KNIPS"
 		fi
 	fi
 	if [ "$MODE" == "KNIPS" ]; then
-		firefox $APP_BASEPATH/knips.html
+		firefox $APP_BASEPATH/vent.html
 		gphoto2 --capture-image-and-download
 		filnavn=$(ls -1tr | tail -1)
 		
