@@ -12,13 +12,19 @@
 	<!-- Latest compiled JavaScript -->
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-
-<body>
+<script language="JavaScript">
+    function prefill(){
+        jQuery.getJSON("http://localhost:8080/siste", function (data){
+            $('#data').html(data.path);
+        });
+    }
+</script>
+<body onLoad="prefill()">
 	<div class="fullscreen_info">
-		<h1> Velkommen til fotoboksen.</h1>
-		<p>	Du kan ta bilde av deg/dere og deretter godkjenne eller avvise</p>
-		<h1>Trykk BLÅ for å ta bilde</h1>
-	<p>Når du trykker, vil det gå ca tre sekunder før bildet tas.</p>
+		<h1> Velkommen til fotoboksen!</h1>
+		<p>	Her kan du ta et bilde til brudeparet.</p>
+		<h1>Trykk <span style="color:blue">BLÅ</span> for å starte</h1>
+	<p>Knips etter 3 sekunder</p>
 	</div>
 </body>
 </html>

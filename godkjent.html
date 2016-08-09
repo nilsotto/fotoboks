@@ -11,12 +11,20 @@
 
 	<!-- Latest compiled JavaScript -->
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script language="JavaScript">
+		function prefill(){
+			jQuery.getJSON("http://localhost:8080/siste", function (data){
+				$('#bilde').attr("src",data.path)
+			});
+		}
+	</script>
 </head>
 
-<body>
+<body onload="prefill()">
 <div class="fullscreen_info">
-	<h1>OK. Bildet er lagret</h1>
-	<p>	Du kan se bildet senere</p>
+	<p>OK, Beholder bildet!</p>
+	<img id="bilde" src="bilder/placeholder.png" width="1050">
+	<p>	Takk skal du ha!</p>
 </div>
 </body>
 </html>

@@ -1,11 +1,20 @@
 .fullscreen_info {
-  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
-  min-height: 100vh; /* These two lines are counted as one :-)       */
-  font-size: 75px;
-  #display: flex;
-  align-items: center;
-
+    min-height: 90%;  /* Fallback for browsers do NOT support vh unit */
+    min-height: 95vh; /* These two lines are counted as one :-)       */
+    font-size: 65px;
+    #display: flex;
+    align-items: center;px;
+    margin: 20px;
+    padding: 20px;
+    vertical-align: middle;
+    text-align: center;
+    background-image: url("/static/bakgrunn.svg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: 70%;
+    border: dotted;
 }
 h1{
-    font-size: 150px;
+    font-size: 130px;
 }

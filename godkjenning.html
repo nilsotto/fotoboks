@@ -11,11 +11,20 @@
 
 	<!-- Latest compiled JavaScript -->
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script language="JavaScript">
+        function prefill(){
+            jQuery.getJSON("http://localhost:8080/siste", function (data){
+                $('#bilde').attr("src",data.path)
+            });
+        }
+    </script>
 </head>
 
-<body>
+<body onload="prefill()">
 <div class="fullscreen_info">
-	<h1>OK.</h1> <p>Bildet er slettet</p>
+	<p>Her er bildet:</p>
+	<img id="bilde" src="bilder/placeholder.png" width="1050">
+	<p>	Godkjenn med <span style="color:green">grønn</span>, avvis med <span style="color:red">rød</p>
 </div>
 </body>
 </html>
