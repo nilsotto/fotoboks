@@ -5,29 +5,29 @@ export MODE="KLAR"
 export TMP_FOLDER=/home/pi/fotoboks/bilder
 export GODKJ_FOLDER=/home/pi/fotoboks/bilder/godkjent
 
-export APP_FOLDER=$(realpath $(dirname $0))
+export APP_BASEPATH="localhost:8008/static"
 gpio omode 1 up
 gpio mode 4 up
 gpio mode 5 up
 cd $TMP_FOLDER
-x-www-browser $APP_FOLDER/klar.html &
+firefox $APP_BASEPATH/klar.html &
 while true 
 do
         pkill gvfsd-gphoto2
 	if [ "$MODE" == "KLAR" ]; then
  		BLAA=$(gpio read 1)
 		if [ $BLAA -eq 0 ]; then
-			x-www-browser $APP_FOLDER/vent.html
+			firefox $APP_BASEPATH/vent.html
 			sleep 3
 			export MODE="KNIPS"
 		fi
 	fi
 	if [ "$MODE" == "KNIPS" ]; then
-		x-www-browser $APP_FOLDER/knips.html
+		firefox $APP_BASEPATH/knips.html
 		gphoto2 --capture-image-and-download
 		filnavn=$(ls -1tr | tail -1)
 		
-		x-www-browser $TMP_FOLDER/$filnavn
+		firefox $APP_BASEPATH/godkjenning.html
 		export MODE="GODKJENN"
 	fi
 	if [ "$MODE" == "GODKJENN" ]; then
@@ -37,18 +37,18 @@ do
 			echo "Avvist"
 			rm $filnavn
 			filnavn=""
-			x-www-browser $APP_FOLDER/avvist.html
+			firefox $APP_BASEPATH/avvist.html
 			sleep 3
-			x-www-browser $APP_FOLDER/klar.html
+			firefox $APP_BASEPATH/klar.html
 			export MODE="KLAR"
 		fi
 		if [ $GRONN -eq 0 ]; then
   			echo "Godkjent"
 			mv $filnavn $GODKJ_FOLDER
 			filnavn=""
-			x-www-browser $APP_FOLDER/godkjent.html
+			firefox $APP_BASEPATH/godkjent.html
 			sleep 3
-			x-www-browser $APP_FOLDER/klar.html
+			firefox $APP_BASEPATH/klar.html
 			export MODE="KLAR"
 		fi
 	fi
