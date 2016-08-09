@@ -1,12 +1,11 @@
-.vertical-center {
+.fullscreen_info {
   min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
   min-height: 100vh; /* These two lines are counted as one :-)       */
-
-  display: flex;
+  font-size: 75px;
+  #display: flex;
   align-items: center;
 
 }
-p { 
-
-font-size: xx-large;
+h1{
+    font-size: 150px;
 }
