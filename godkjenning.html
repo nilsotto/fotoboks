@@ -14,7 +14,7 @@
     <script language="JavaScript">
         function prefill(){
             jQuery.getJSON("http://localhost:8080/tilgodkjenning", function (data){
-                $('#bilde').attr("src",data.path)
+                $('#bilde').attr("src",data.liste[0].path)
             });
         }
     </script>
